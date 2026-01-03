@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Flawless Lofts | Design • Build • Finish</title>
+  <meta name="description" content="Flawless Lofts — Loft conversions & home improvements. Design • Build • Finish." />
+
+  <style>
+    :root{
+      --bg0:#060709;
+      --bg1:#0a0c10;
+      --line:rgba(255,255,255,.10);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+
+      --gold:#c8a24a;
+      --gold2:#f0d28a;
+
+      --shadow: 0 25px 70px rgba(0,0,0,.55);
+      --shadow2: 0 12px 40px rgba(0,0,0,.40);
+
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 720px at 75% 5%, rgba(200,162,74,.25), transparent 58%),
+        radial-gradient(900px 620px at 5% 0%, rgba(255,255,255,.06), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      letter-spacing: .1px;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:0 22px}
+
+    /* top nav */
+    header{
+      position:sticky; top:0; z-index:50;
+      background: rgba(8,10,13,.62);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav{
+      height:74px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 220px;
+    }
+    .brandTitle{ line-height:1.05; }
+    .brandTitle b{
+      display:block;
+      letter-spacing:.45px;
+      font-size:14px;
+    }
+    .brandTitle span{
+      display:block;
+      font-size:12px;
+      color:var(--muted);
+      margin-top:3px;
+    }
+
+    .navLinks{
+      display:flex; gap:18px; align-items:center;
+    }
+    .navLinks a{
+      color:var(--muted);
+      font-size:14px;
+      padding:10px 10px;
+      border-radius:12px;
+      transition: .15s ease;
+    }
+    .navLinks a:hover{
+      color:var(--text);
+      background: rgba(255,255,255,.05);
+    }
+
+    .ctaRow{display:flex; gap:10px; align-items:center}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.11);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      font-weight:600;
+      font-size:14px;
+      transition: transform .15s ease, background .15s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-1px); background: rgba(255,255,255,.06)}
+    .btnGold{
+      color:#0b0c0f;
+      border-color: rgba(200,162,74,.60);
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
+      box-shadow: 0 18px 45px rgba(200,162,74,.22);
+    }
+    .btnGold:hover{
+      background: linear-gradient(135deg, var(--gold2) 0%, var(--gold) 100%);
+    }
+
+    .menuBtn{
+      display:none;
+      width:42px; height:42px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.11);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      cursor:pointer;
+    }
+    .mobileNav{
+      display:none;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding:10px 0 14px;
+    }
+    .mobileNav a{
+      display:block;
+      padding:10px 12px;
+      border-radius:14px;
+      color:var(--muted);
+    }
+    .mobileNav a:hover{background: rgba(255,255,255,.06); color:var(--text)}
+    .mobileNav.open{display:block}
+
+    /* small label pill like your mock */
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color:rgba(255,255,255,.80);
+      font-size:14px;
+      backdrop-filter: blur(8px);
+    }
+    .miniDot{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--gold);
+      box-shadow: 0 0 0 4px rgba(200,162,74,.17);
+    }
+
+    /* HERO */
+    .hero{
+      padding:52px 0 10px; /* tightened */
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap:24px;
+      margin-top:14px;
+      align-items:stretch;
+    }
+    h1{
+      margin:14px 0 12px;
+      font-size: clamp(36px, 4.6vw, 58px);
+      line-height:1.03;
+      letter-spacing:-.9px;
+    }
+    .h1Gold{ color: var(--gold2); }
+    .lead{
+      margin:0;
+      max-width: 60ch;
+      color: var(--muted);
+      font-size:16px;
+    }
+    .heroBtns{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; }
+
+    .glassCard{
+      border-radius: 26px;
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(900px 380px at 70% 0%, rgba(200,162,74,.23), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .glassInner{ padding:20px; display:flex; flex-direction:column; gap:12px; height:100%;}
+    .logoBlock{ display:flex; flex-direction:column; align-items:center; padding:10px 12px 6px; border-radius: 22px; }
+
+    .tickRow{
+      display:flex; gap:10px; align-items:center;
+      padding:10px 12px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.20);
+      color: rgba(255,255,255,.86);
+      font-size: 14px;
+    }
+    .tickIcon{
+      width:18px; height:18px; border-radius:7px;
+      display:grid; place-items:center;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color:#101114;
+      font-weight:900;
+      font-size:12px;
+      flex:0 0 auto;
+    }
+
+    .listBox{ display:grid; gap:10px; margin-top:6px; }
+    .listItem{
+      display:flex; justify-content:space-between; align-items:center; gap:14px;
+      padding:12px 12px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+    }
+    .listItem b{ font-size:14px; display:block; }
+    .listItem small{ color: var(--muted); display:block; margin-top:2px; }
+    .chev{ color: rgba(255,255,255,.55); }
+
+    /* sections */
+    section{ padding:40px 0; } /* tightened */
+    .sectionTitle{
+      font-size: 30px;
+      margin:0 0 10px;
+      letter-spacing:-.5px;
+    }
+    .sectionTitle .gold{ color: var(--gold2); }
+    .sectionSub{
+      margin:0 0 16px; /* tightened */
+      color: var(--muted);
+      max-width: 70ch;
+    }
+
+    /* Services */
+    .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; }
+    .svcCard{
+      border-radius: 20px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow2);
+      padding:16px;
+      min-height: 150px;
+    }
+    .svcTop{ display:flex; gap:12px; align-items:center; }
+    .svcIcon{
+      width:40px; height:40px;
+      border-radius: 16px;
+      border:1px solid rgba(200,162,74,.35);
+      background: rgba(200,162,74,.10);
+      display:grid; place-items:center;
+    }
+    .svcIcon svg{ width:20px; height:20px; stroke: var(--gold2); stroke-width:2; fill:none; }
+    .svcCard h3{ margin:0; font-size:16px; }
+    .svcCard p{ margin:10px 0 0; color: var(--muted); font-size:14px; }
+
+    /* Projects (button removed + no empty space) */
+    .projectsBar{
+      margin-bottom:12px; /* tightened */
+    }
+
+    .projectsGrid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:14px;
+      margin-top:10px; /* ensures no odd gap */
+    }
+    .projectMain{
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+      box-shadow: var(--shadow2);
+    }
+    .projImg{
+      height: 210px;
+      background:
+        radial-gradient(900px 300px at 60% 0%, rgba(200,162,74,.27), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.06), rgba(0,0,0,.25));
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      position:relative;
+    }
+    .projImg::after{
+      content:"";
+      position:absolute; inset:auto 18px 16px 18px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(200,162,74,.0), rgba(200,162,74,.8), rgba(200,162,74,.0));
+      opacity:.6;
+    }
+    .projBody{ padding:16px; }
+    .projBody b{ display:block; margin-bottom:6px; }
+    .projBody span{ color: var(--muted); font-size:14px; }
+
+    .projectSide{ display:grid; gap:14px; }
+    .miniCard{
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow2);
+      padding:16px;
+    }
+    .miniCard b{ display:block; margin-bottom:6px; }
+    .miniCard span{ color: var(--muted); font-size:14px; }
+
+    /* About + contact */
+    .contactGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:12px; /* tightened */
+    }
+    .infoCard, .formCard{
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow2);
+      padding:16px;
+    }
+    .infoLine{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:10px 10px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.18);
+      margin-top:10px;
+    }
+    .bullet{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--gold);
+      margin-top:5px;
+      box-shadow: 0 0 0 4px rgba(200,162,74,.14);
+      flex:0 0 auto;
+    }
+    .infoLine b{ display:block; }
+    .infoLine span{ color: var(--muted); font-size:14px; display:block; margin-top:2px; }
+
+    form{ display:grid; gap:10px; margin-top:10px; }
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.20);
+      color: var(--text);
+      outline:none;
+      font-size:14px;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(200,162,74,.55);
+      box-shadow: 0 0 0 4px rgba(200,162,74,.15);
+    }
+    textarea{ min-height: 110px; resize:vertical; }
+
+    footer{
+      padding:26px 0 44px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color: var(--muted);
+      font-size:14px;
+    }
+    .footerRow{
+      display:flex; justify-content:space-between; align-items:flex-start;
+      gap:14px; flex-wrap:wrap;
+    }
+    .tinyLinks{ display:flex; gap:12px; flex-wrap:wrap; }
+    .tinyLinks a{ color: var(--muted); }
+    .tinyLinks a:hover{ color: var(--text); }
+
+    /* Logo SVG sizing */
+    .logoSvg{ width:64px; height:auto; display:block; }
+    .logoSvg.small{ width:42px; }
+
+    /* responsive */
+    @media (max-width: 920px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      .projectsGrid{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px){
+      .navLinks{ display:none; }
+      .menuBtn{ display:inline-grid; place-items:center; }
+      .contactGrid{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Flawless Lofts home">
+          <!-- Recreated logo mark (compact) -->
+          <svg class="logoSvg small" viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flawless Lofts logo mark">
+            <defs>
+              <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#c8a24a"/>
+                <stop offset="1" stop-color="#f0d28a"/>
+              </linearGradient>
+              <linearGradient id="gSteel" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#9aa0a7"/>
+                <stop offset="1" stop-color="#5c6066"/>
+              </linearGradient>
+            </defs>
+
+            <path d="M18 20 H78 V40 H50 V92 H32 V40 H18 Z" fill="url(#gGold)"/>
+            <path d="M50 48 H78 V62 H50 Z" fill="url(#gGold)" opacity=".95"/>
+            <path d="M32 62 H50 V76 H32 Z" fill="url(#gGold)" opacity=".95"/>
+
+            <rect x="78" y="20" width="4" height="86" rx="2" fill="rgba(255,255,255,.12)"/>
+
+            <path d="M82 20 H142 V40 H110 V48 H142 V64 H110 V92 H92 V40 H82 Z" fill="url(#gSteel)"/>
+            <path d="M110 64 H142 V78 H110 Z" fill="url(#gSteel)" opacity=".95"/>
+
+            <path d="M18 20 H142" stroke="rgba(255,255,255,.10)" stroke-width="3" />
+          </svg>
+
+          <div class="brandTitle">
+            <b>FLAWLESS LOFTS</b>
+            <span>Design • Build • Finish</span>
+          </div>
+        </a>
+
+        <nav class="navLinks" aria-label="Primary navigation">
+          <a href="#services">Services</a>
+          <a href="#projects">Recent projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="ctaRow">
+          <a class="btn" href="tel:+447838181850">07838 181 850</a>
+          <a class="btn btnGold" href="#contact">Get a quote</a>
+          <button class="menuBtn" id="menuBtn" aria-label="Open menu">☰</button>
+        </div>
+      </div>
+
+      <div class="mobileNav" id="mobileNav" aria-label="Mobile navigation">
+        <a href="#services">Services</a>
+        <a href="#projects">Recent projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="container">
+
+      <!-- HERO -->
+      <section class="hero">
+        <span class="pill"><span class="miniDot"></span> Loft conversions & home improvements</span>
+
+        <div class="heroGrid">
+          <div>
+            <h1>
+              Flawless loft<br/>
+              <span class="h1Gold">conversions</span>,<br/>
+              done properly.
+            </h1>
+            <p class="lead">
+              We manage your project end-to-end — from design and planning through build and finish —
+              delivering clean workmanship, clear communication, and a result you’ll love.
+            </p>
+
+            <div class="heroBtns">
+              <a class="btn btnGold" href="#contact">Request a free quote</a>
+              <a class="btn" href="tel:+442035383878">Call: 020 3538 3878</a>
+              <a class="btn" href="#projects">See recent work</a>
+            </div>
+          </div>
+
+          <aside class="glassCard" aria-label="Highlights card">
+            <div class="glassInner">
+              <div class="logoBlock">
+                <!-- Full logo (inline SVG) -->
+                <svg class="logoSvg" viewBox="0 0 220 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flawless Lofts logo">
+                  <defs>
+                    <linearGradient id="gGold2" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="#c8a24a"/>
+                      <stop offset="1" stop-color="#f0d28a"/>
+                    </linearGradient>
+                    <linearGradient id="gSteel2" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="#9aa0a7"/>
+                      <stop offset="1" stop-color="#5c6066"/>
+                    </linearGradient>
+                  </defs>
+
+                  <g transform="translate(30,18)">
+                    <path d="M18 10 H88 V32 H56 V96 H34 V32 H18 Z" fill="url(#gGold2)"/>
+                    <path d="M56 40 H88 V56 H56 Z" fill="url(#gGold2)" opacity=".96"/>
+                    <path d="M34 56 H56 V72 H34 Z" fill="url(#gGold2)" opacity=".96"/>
+                    <rect x="88" y="10" width="5" height="96" rx="2.5" fill="rgba(255,255,255,.12)"/>
+                    <path d="M93 10 H162 V32 H126 V40 H162 V58 H126 V96 H104 V32 H93 Z" fill="url(#gSteel2)"/>
+                    <path d="M126 58 H162 V76 H126 Z" fill="url(#gSteel2)" opacity=".96"/>
+                    <path d="M18 10 H162" stroke="rgba(255,255,255,.10)" stroke-width="3" />
+                  </g>
+
+                  <text x="110" y="140" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-weight="900" font-size="24" letter-spacing="1.2">
+                    <tspan fill="#f0d28a">FLAWLESS</tspan>
+                    <tspan fill="rgba(255,255,255,.92)"> LOFTS</tspan>
+                  </text>
+                  <text x="110" y="158" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-weight="600" font-size="10" letter-spacing="2.0" fill="rgba(255,255,255,.65)">
+                    DESIGN • BUILD • FINISH
+                  </text>
+                </svg>
+              </div>
+
+              <div class="tickRow">
+                <span class="tickIcon">✓</span>
+                <span>Trusted local team • Quality first</span>
+              </div>
+
+              <div class="listBox">
+                <div class="listItem">
+                  <div>
+                    <b>Loft conversions</b>
+                    <small>Dormer, hip-to-gable, mansard</small>
+                  </div>
+                  <span class="chev">›</span>
+                </div>
+
+                <div class="listItem">
+                  <div>
+                    <b>Extensions & refurb</b>
+                    <small>Kitchens, bathrooms, full renovations</small>
+                  </div>
+                  <span class="chev">›</span>
+                </div>
+
+                <div class="listItem">
+                  <div>
+                    <b>Start to finish service</b>
+                    <small>Design • Build • Finish</small>
+                  </div>
+                  <span class="chev">›</span>
+                </div>
+              </div>
+
+              <a class="btn btnGold" href="#contact" style="margin-top:auto;">Book a consultation</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services">
+        <h2 class="sectionTitle">Services</h2>
+        <p class="sectionSub">
+          Everything you need for a smooth loft conversion or renovation — delivered with a tidy, professional finish.
+        </p>
+
+        <div class="grid3">
+          <div class="svcCard">
+            <div class="svcTop">
+              <div class="svcIcon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>
+              </div>
+              <h3>Loft conversions</h3>
+            </div>
+            <p>Dormer, hip-to-gable, mansard conversions, insulation, stairs and room finishes.</p>
+          </div>
+
+          <div class="svcCard">
+            <div class="svcTop">
+              <div class="svcIcon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M6 20V8l6-4 6 4v12"/><path d="M9 20v-6h6v6"/></svg>
+              </div>
+              <h3>Extensions & refurbishments</h3>
+            </div>
+            <p>Rear/side extensions, kitchens, bathrooms and full property renovations.</p>
+          </div>
+
+          <div class="svcCard">
+            <div class="svcTop">
+              <div class="svcIcon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 14l6-6 4 4 6-6"/><path d="M20 20H4"/></svg>
+              </div>
+              <h3>Design & project service</h3>
+            </div>
+            <p>Planning support, scheduling, coordination and clear updates from start to completion.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects">
+        <div class="projectsBar">
+          <h2 class="sectionTitle">Recent <span class="gold">projects</span></h2>
+          <p class="sectionSub" style="margin-bottom:0;">
+            Replace these placeholders with your own photos and short descriptions — the layout is ready.
+          </p>
+        </div>
+
+        <div class="projectsGrid">
+          <div class="projectMain">
+            <div class="projImg" role="img" aria-label="Featured project placeholder image"></div>
+            <div class="projBody">
+              <b>Full dormer loft conversion</b>
+              <span>Bedroom + en-suite with bespoke storage and a clean modern finish.</span>
+            </div>
+          </div>
+
+          <div class="projectSide">
+            <div class="miniCard">
+              <b>Hip-to-gable conversion</b>
+              <span>Maximised headroom, new staircase, upgraded insulation.</span>
+            </div>
+            <div class="miniCard">
+              <b>Refurb & rewire</b>
+              <span>Plastering, carpentry, electrics, decoration — fully managed.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT / CONTACT -->
+      <section id="about">
+        <h2 class="sectionTitle">About <span class="gold">Flawless Lofts</span></h2>
+        <p class="sectionSub">
+          A quality-focused team delivering loft conversions and home improvements with a simple promise:
+          clear communication, tidy work, and a finish you’re proud of.
+        </p>
+
+        <div class="contactGrid" id="contact">
+          <div class="infoCard">
+            <h3 style="margin:0 0 10px;">Contact details</h3>
+
+            <div class="infoLine">
+              <span class="bullet"></span>
+              <div>
+                <b>Phone</b>
+                <span>
+                  <a href="tel:+447838181850">07838 181 850</a> •
+                  <a href="tel:+442035383878">020 3538 3878</a>
+                </span>
+              </div>
+            </div>
+
+            <div class="infoLine">
+              <span class="bullet"></span>
+              <div>
+                <b>Email</b>
+                <span><a href="mailto:info@flawlesslofts.co.uk">info@flawlesslofts.co.uk</a></span>
+              </div>
+            </div>
+
+            <div class="infoLine">
+              <span class="bullet"></span>
+              <div>
+                <b>Area</b>
+                <span>London & surrounding areas</span>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+              <a class="btn btnGold" href="tel:+447838181850">Call now</a>
+              <a class="btn" href="mailto:info@flawlesslofts.co.uk?subject=Quote%20request%20-%20Flawless%20Lofts">Email us</a>
+            </div>
+          </div>
+
+          <div class="formCard">
+            <h3 style="margin:0 0 10px;">Quick enquiry form</h3>
+
+            <form id="quoteForm">
+              <input name="name" placeholder="Your name" required />
+              <input name="phone" placeholder="Phone number" required />
+              <input name="postcode" placeholder="Postcode / area" />
+              <textarea name="message" placeholder="What work do you need? (loft type, rooms, timeframe, etc.)" required></textarea>
+              <button class="btn btnGold" type="submit">Send enquiry</button>
+              <small style="color:var(--muted); display:block;">
+                This opens your email app to send the message.
+              </small>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footerRow">
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <svg class="logoSvg small" viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flawless Lofts logo mark">
+              <defs>
+                <linearGradient id="gGoldF" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#c8a24a"/>
+                  <stop offset="1" stop-color="#f0d28a"/>
+                </linearGradient>
+                <linearGradient id="gSteelF" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#9aa0a7"/>
+                  <stop offset="1" stop-color="#5c6066"/>
+                </linearGradient>
+              </defs>
+              <path d="M18 20 H78 V40 H50 V92 H32 V40 H18 Z" fill="url(#gGoldF)"/>
+              <path d="M50 48 H78 V62 H50 Z" fill="url(#gGoldF)" opacity=".95"/>
+              <path d="M32 62 H50 V76 H32 Z" fill="url(#gGoldF)" opacity=".95"/>
+              <rect x="78" y="20" width="4" height="86" rx="2" fill="rgba(255,255,255,.12)"/>
+              <path d="M82 20 H142 V40 H110 V48 H142 V64 H110 V92 H92 V40 H82 Z" fill="url(#gSteelF)"/>
+              <path d="M110 64 H142 V78 H110 Z" fill="url(#gSteelF)" opacity=".95"/>
+              <path d="M18 20 H142" stroke="rgba(255,255,255,.10)" stroke-width="3" />
+            </svg>
+
+            <div>
+              <b style="color:var(--text); letter-spacing:.5px;">FLAWLESS LOFTS</b><br/>
+              <span>Design • Build • Finish</span>
+            </div>
+          </div>
+
+          <div class="tinyLinks">
+            <a href="#services">Services</a>
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+
+        <div style="margin-top:14px; color:rgba(255,255,255,.55);">
+          © <span id="year"></span> Flawless Lofts. All rights reserved.
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <script>
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    menuBtn?.addEventListener('click', () => mobileNav.classList.toggle('open'));
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // No-backend form using mailto
+    const form = document.getElementById('quoteForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+
+      const name = data.get('name') || '';
+      const phone = data.get('phone') || '';
+      const postcode = data.get('postcode') || '';
+      const message = data.get('message') || '';
+
+      const subject = encodeURIComponent('Quote request - Flawless Lofts');
+      const body = encodeURIComponent(
+        `Name: ${name}\nPhone: ${phone}\nArea/Postcode: ${postcode}\n\nProject details:\n${message}\n`
+      );
+
+      window.location.href = `mailto:info@flawlesslofts.co.uk?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>
